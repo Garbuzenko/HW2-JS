@@ -8,11 +8,19 @@ function simple(a){
     return true;
 }
 
-while (true){
-
-    const numberFromUser = prompt("Введите число");
-    console.time()
-    let answer = simple(+numberFromUser)
-    console.timeEnd()
-    alert(answer);
+function simpleArray(n){
+    let a = 2
+    let count = 0
+    let array =  [];
+    while (count < n){
+        a++
+        if ( simple(a) == true ){
+            array[count]=a
+            count++
+        }
+    }
+    return array;
 }
+
+
+console.log(simpleArray(process.argv[2]))
