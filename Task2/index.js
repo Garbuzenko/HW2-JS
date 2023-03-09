@@ -54,14 +54,13 @@ let basket = [
 ]
 
 
-
 function basketAdd(good){
     let res = 0;
     for (let i=0; i < basket.length; i++){
         if ( basket[i].id = good.id ){
             basket[i].amount += 1; 
             res += 1;
-            exit;
+            // exit;
         }
     }
     if (res === 0 ){
@@ -77,12 +76,12 @@ function basketAdd(good){
 function basketRemove(good){
     let res = 0;
     for (let i=0; i < basket.length; i++){
-        if (basket[i].id = good.id ){
-            basket[i].amount -= 1; 
-            if ( basket[i].amount = 0 ){
+        if (basket[i].id == good.id ){
+            basket[i].amount += -1; 
+            if ( basket[i].amount == 0 ){
                 basket.splice(i, 1)
             }
-            exit;
+            // exit;
         }
     }
 }
@@ -102,10 +101,20 @@ function totalAmount(){
 function totalSumm(){
     let total = 0;
     for (let i=0; i < basket.length; i++){
-        total += goods.filter(good => good.id == basket[i].id)[0].price * basket[i].amount
+        total += basket[i].amount * goods.filter(good => good.id == basket[i].id)[0].price
     }
     return total
 }
 
-alert(totalAmount());
-alert(totalSumm());
+function total(){
+    return {"totalAmount": totalAmount(), "totalSumm": totalSumm()}
+}
+
+basketClear()
+basketAdd( { id: 1 })
+basketAdd( { id: 1 })
+basketAdd( { id: 2 })
+basketRemove( {id: 2})
+console.log(total());
+
+
